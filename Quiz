@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html lang="pt-BR"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Quiz de Lógica</title> <style> body { font-family: Arial, sans-serif; background: #151515; color: white; text-align: center; padding: 40px 20px; } .quiz { max-width: 500px; margin: auto; background: #222; padding: 30px; border-radius: 15px; box-shadow: 0 0 20px #000; } h1 { color: #00d9ff; } #pergunta { font-size: 22px; margin: 30px 0; } button { padding: 12px 30px; margin: 8px; border: none; border-radius: 8px; font-size: 17px; cursor: pointer; } .sim { background: #20c970; color: white; } .nao { background: #e63946; color: white; } button:hover { opacity: 0.8; } #resultado { margin-top: 25px; font-size: 20px; } </style> </head> <body> <div class="quiz">
+<h1>🧠 Quiz de Lógica</h1>
+
+<p id="numero">Pergunta 1</p>
+
+<p id="pergunta"></p>
+
+<button class="sim" onclick="responder(true)">
+    SIM
+</button>
+
+<button class="nao" onclick="responder(false)">
+    NÃO
+</button>
+
+<p id="resultado"></p>
+
+</div> <script> const perguntas = [ { texto: "Se todos os gatos são animais, então um gato é um animal?", resposta: true }, { texto: "Se 2 + 2 = 4, então 5 + 5 = 11?", resposta: false }, { texto: "Se João é mais velho que Pedro e Pedro é mais velho que Lucas, João é mais velho que Lucas?", resposta: true }, { texto: "Um quadrado possui três lados?", resposta: false }, { texto: "Se hoje é segunda-feira, amanhã será terça-feira?", resposta: true }, { texto: "Se nenhum peixe é mamífero, então uma baleia é um peixe?", resposta: false }, { texto: "Se 10 é maior que 5, então 5 é maior que 10?", resposta: false }, { texto: "Se todos os pássaros possuem asas e um animal é um pássaro, ele possui asas?", resposta: true } ]; let atual = 0; let pontos = 0; mostrarPergunta(); function mostrarPergunta() { document.getElementById("numero").innerText = "Pergunta " + (atual + 1) + " de " + perguntas.length; document.getElementById("pergunta").innerText = perguntas[atual].texto; } function responder(resposta) { if (resposta === perguntas[atual].resposta) { pontos++; } atual++; if (atual < perguntas.length) { mostrarPergunta(); } else { mostrarResultado(); } } function mostrarResultado() { document.getElementById("numero").innerText = "Quiz terminado!"; document.getElementById("pergunta").innerText = "Você acertou " + pontos + " de " + perguntas.length + "!"; document.querySelector(".sim").style.display = "none"; document.querySelector(".nao").style.display = "none"; let mensagem; if (pontos === perguntas.length) { mensagem = "🏆 Perfeito! Você mandou muito bem!"; } else if (pontos >= 5) { mensagem = "👏 Muito bom! Seu raciocínio está afiado."; } else { mensagem = "💡 Continue praticando lógica!"; } document.getElementById("resultado").innerText = mensagem; } </script> </body> </html>
